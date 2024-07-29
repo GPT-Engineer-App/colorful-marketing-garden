@@ -9,11 +9,9 @@ const MarketingStepButton = ({ step, index, onClick, isSelected, isExpanded }) =
 
   return (
     <motion.div
-      initial={{ scale: 0, x: 0, y: 0, opacity: 0, rotate: -180 }}
+      initial={{ scale: 0, opacity: 0, rotate: -180 }}
       animate={{ 
         scale: isExpanded ? 1 : 0, 
-        x: isExpanded ? x : 0, 
-        y: isExpanded ? y : 0, 
         opacity: isExpanded ? 1 : 0,
         rotate: isExpanded ? 0 : -180
       }}
@@ -21,9 +19,15 @@ const MarketingStepButton = ({ step, index, onClick, isSelected, isExpanded }) =
         type: 'spring',
         stiffness: 100,
         damping: 15,
-        delay: isExpanded ? index * 0.1 : (5 - index) * 0.1,
+        delay: isExpanded ? index * 0.3 : (5 - index) * 0.3,
       }}
-      style={{ position: 'absolute', top: '50%', left: '50%', transformOrigin: 'top center' }}
+      style={{ 
+        position: 'absolute', 
+        top: '50%', 
+        left: '50%', 
+        transform: `translate(-50%, -50%) rotate(${angle}rad) translateY(-150px)`,
+        transformOrigin: 'center center'
+      }}
     >
       <motion.div
         whileHover={{ scale: 1.1 }}

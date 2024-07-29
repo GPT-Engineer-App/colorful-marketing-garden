@@ -21,7 +21,7 @@ const Index = () => {
     if (isExpanded) {
       const timer = setTimeout(() => {
         setAnimationComplete(true);
-      }, marketingSteps.length * 100 + 1000); // Increased delay to account for rotation
+      }, marketingSteps.length * 300 + 3000); // Increased delay to account for slower animation
       return () => clearTimeout(timer);
     }
   }, [isExpanded]);
