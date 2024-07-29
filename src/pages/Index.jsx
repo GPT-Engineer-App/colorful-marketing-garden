@@ -43,30 +43,30 @@ const Index = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-4 bg-gray-100">
       <div className="relative w-[400px] h-[400px]">
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
           <motion.button
             onClick={handleCentralButtonClick}
-            className="w-[150px] h-[150px] rounded-full bg-white shadow-lg flex flex-col items-center justify-center text-center p-4"
+            className="w-[150px] h-[150px] rounded-full bg-white shadow-lg flex flex-col items-center justify-center text-center p-4 z-20"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             <span className="text-xs font-semibold">6 STEPS</span>
             <span className="text-sm font-bold">To An Effective Marketing Plan</span>
           </motion.button>
-        </div>
 
-        <AnimatePresence>
-          {marketingSteps.map((step, index) => (
-            <MarketingStepButton
-              key={step.number}
-              step={step}
-              index={index}
-              onClick={() => handleStepClick(step)}
-              isSelected={selectedStep === step}
-              isExpanded={isExpanded}
-            />
-          ))}
-        </AnimatePresence>
+          <AnimatePresence>
+            {marketingSteps.map((step, index) => (
+              <MarketingStepButton
+                key={step.number}
+                step={step}
+                index={index}
+                onClick={() => handleStepClick(step)}
+                isSelected={selectedStep === step}
+                isExpanded={isExpanded}
+              />
+            ))}
+          </AnimatePresence>
+        </div>
       </div>
 
       <AnimatePresence>
