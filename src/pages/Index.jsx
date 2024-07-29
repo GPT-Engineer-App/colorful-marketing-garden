@@ -46,8 +46,8 @@ const Index = () => {
         <motion.div
           initial={false}
           animate={{
-            width: isExpanded ? 400 : 200,
-            height: isExpanded ? 400 : 200,
+            width: isExpanded ? 400 : 150,
+            height: isExpanded ? 400 : 150,
           }}
           transition={{ duration: 0.5 }}
           className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
@@ -58,8 +58,8 @@ const Index = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <span className="text-sm font-semibold">6 STEPS</span>
-            <span className="text-lg font-bold">To An Effective Marketing Plan</span>
+            <span className="text-xs font-semibold">6 STEPS</span>
+            <span className="text-sm font-bold">To An Effective Marketing Plan</span>
           </motion.button>
         </motion.div>
 

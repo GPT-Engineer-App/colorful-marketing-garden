@@ -21,7 +21,7 @@ const MarketingStepButton = ({ step, index, onClick, isSelected, isExpanded, ani
         damping: 15,
         delay: isExpanded ? index * 0.1 : (5 - index) * 0.1,
       }}
-      style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
+      style={{ position: 'absolute', top: '50%', left: '50%', transform: `translate(-50%, -50%) rotate(${angle + Math.PI}rad)` }}
     >
       <motion.div
         whileHover={{ scale: 1.1 }}
@@ -30,7 +30,7 @@ const MarketingStepButton = ({ step, index, onClick, isSelected, isExpanded, ani
         className={`w-32 h-48 relative cursor-pointer ${isSelected ? 'z-10' : 'z-0'}`}
       >
         <PetalSVG color={step.color} />
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-white" style={{ transform: `rotate(${-(angle + Math.PI)}rad)` }}>
           <span className="text-lg font-bold">{step.number}</span>
           <span className="text-xs mt-1 px-2 text-center">{step.title}</span>
         </div>
