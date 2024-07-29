@@ -21,7 +21,7 @@ const Index = () => {
     if (isExpanded) {
       const timer = setTimeout(() => {
         setAnimationComplete(true);
-      }, marketingSteps.length * 100 + 500); // Adjust timing based on the number of steps
+      }, marketingSteps.length * 100 + 1000); // Increased delay to account for rotation
       return () => clearTimeout(timer);
     }
   }, [isExpanded]);
@@ -42,7 +42,7 @@ const Index = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-4 bg-gray-100">
-      <div className="relative w-[300px] h-[300px]">
+      <div className="relative w-[400px] h-[400px]">
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
           <motion.button
             onClick={handleCentralButtonClick}
