@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import PetalSVG from './PetalSVG';
 
-const MarketingStepButton = ({ step, index, onClick, isSelected, isExpanded }) => {
+const MarketingStepButton = ({ step, index, onClick, isSelected, isExpanded, animationComplete }) => {
   const angle = (index * 60 * Math.PI) / 180;
   const x = Math.cos(angle) * 150;
   const y = Math.sin(angle) * 150;
@@ -19,7 +19,7 @@ const MarketingStepButton = ({ step, index, onClick, isSelected, isExpanded }) =
         type: 'spring',
         stiffness: 100,
         damping: 15,
-        delay: index * 0.1,
+        delay: isExpanded ? index * 0.1 : (5 - index) * 0.1,
       }}
       style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
     >

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import MarketingStepButton from '@/components/MarketingStepButton';
 import MarketingStepInfo from '@/components/MarketingStepInfo';
@@ -15,18 +15,29 @@ const marketingSteps = [
 const Index = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [selectedStep, setSelectedStep] = useState(null);
+  const [animationComplete, setAnimationComplete] = useState(false);
+
+  useEffect(() => {
+    if (isExpanded) {
+      const timer = setTimeout(() => {
+        setAnimationComplete(true);
+      }, marketingSteps.length * 100 + 500); // Adjust timing based on the number of steps
+      return () => clearTimeout(timer);
+    }
+  }, [isExpanded]);
 
   const handleCentralButtonClick = () => {
-    setIsExpanded(true);
+    if (!isExpanded || animationComplete) {
+      setIsExpanded(!isExpanded);
+      setSelectedStep(null);
+      setAnimationComplete(false);
+    }
   };
 
   const handleStepClick = (step) => {
-    setSelectedStep(step);
-  };
-
-  const handleReset = () => {
-    setIsExpanded(false);
-    setSelectedStep(null);
+    if (animationComplete) {
+      setSelectedStep(step);
+    }
   };
 
   return (
@@ -63,6 +74,7 @@ const Index = () => {
                   onClick={() => handleStepClick(step)}
                   isSelected={selectedStep === step}
                   isExpanded={isExpanded}
+                  animationComplete={animationComplete}
                 />
               ))}
             </>
@@ -83,18 +95,6 @@ const Index = () => {
           </motion.div>
         )}
       </AnimatePresence>
-
-      {isExpanded && (
-        <motion.button
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          onClick={handleReset}
-          className="mt-4 px-4 py-2 bg-gray-200 rounded-full text-sm font-semibold hover:bg-gray-300 transition-colors"
-        >
-          Reset
-        </motion.button>
-      )}
     </div>
   );
 };
