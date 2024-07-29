@@ -22,9 +22,7 @@ const MarketingStepButton = ({ step, index, onClick, isSelected, isExpanded }) =
         position: 'absolute', 
         top: '50%', 
         left: '50%', 
-        width: '32rem', // Twice the button width to account for the radius
-        height: '32rem', // Twice the button height to account for the radius
-        transform: `translate(-50%, -50%) rotate(${finalRotation}deg)`,
+        transform: `translate(-50%, -50%)`,
         transformOrigin: 'center center'
       }}
     >
@@ -32,10 +30,7 @@ const MarketingStepButton = ({ step, index, onClick, isSelected, isExpanded }) =
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         onClick={onClick}
-        className={`w-32 h-32 absolute top-0 left-1/2 -translate-x-1/2 cursor-pointer ${isSelected ? 'z-10' : 'z-0'}`}
-        style={{
-          transform: `translateX(-50%) rotate(${-finalRotation}deg)`, // Counter-rotate the button
-        }}
+        className={`w-32 h-32 relative cursor-pointer ${isSelected ? 'z-10' : 'z-0'}`}
       >
         <PetalSVG color={step.color} />
         <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
