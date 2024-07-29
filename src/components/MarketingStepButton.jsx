@@ -1,10 +1,11 @@
 import { motion } from 'framer-motion';
 import PetalSVG from './PetalSVG';
 
-const MarketingStepButton = ({ step, index, onClick, isSelected, isExpanded, animationComplete }) => {
-  const angle = (index * 60 * Math.PI) / 180;
-  const x = Math.cos(angle) * 150;
-  const y = Math.sin(angle) * 150;
+const MarketingStepButton = ({ step, index, onClick, isSelected, isExpanded }) => {
+  const angle = (index * 60 - 90) * (Math.PI / 180);
+  const radius = 120;
+  const x = Math.cos(angle) * radius;
+  const y = Math.sin(angle) * radius;
 
   return (
     <motion.div
@@ -21,16 +22,16 @@ const MarketingStepButton = ({ step, index, onClick, isSelected, isExpanded, ani
         damping: 15,
         delay: isExpanded ? index * 0.1 : (5 - index) * 0.1,
       }}
-      style={{ position: 'absolute', top: '50%', left: '50%', transform: `translate(-50%, -50%) rotate(${angle + Math.PI}rad)` }}
+      style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
     >
       <motion.div
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         onClick={onClick}
-        className={`w-32 h-48 relative cursor-pointer ${isSelected ? 'z-10' : 'z-0'}`}
+        className={`w-24 h-24 relative cursor-pointer ${isSelected ? 'z-10' : 'z-0'}`}
       >
         <PetalSVG color={step.color} />
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-white" style={{ transform: `rotate(${-(angle + Math.PI)}rad)` }}>
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
           <span className="text-lg font-bold">{step.number}</span>
           <span className="text-xs mt-1 px-2 text-center">{step.title}</span>
         </div>

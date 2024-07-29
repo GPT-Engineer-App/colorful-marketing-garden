@@ -42,15 +42,15 @@ const Index = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-4 bg-gray-100">
-      <div className="relative w-[400px] h-[400px]">
+      <div className="relative w-[300px] h-[300px]">
         <motion.div
           initial={false}
           animate={{
-            width: isExpanded ? 400 : 150,
-            height: isExpanded ? 400 : 150,
+            width: isExpanded ? 300 : 150,
+            height: isExpanded ? 300 : 150,
           }}
           transition={{ duration: 0.5 }}
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10"
         >
           <motion.button
             onClick={handleCentralButtonClick}
@@ -64,21 +64,16 @@ const Index = () => {
         </motion.div>
 
         <AnimatePresence>
-          {isExpanded && (
-            <>
-              {marketingSteps.map((step, index) => (
-                <MarketingStepButton
-                  key={step.number}
-                  step={step}
-                  index={index}
-                  onClick={() => handleStepClick(step)}
-                  isSelected={selectedStep === step}
-                  isExpanded={isExpanded}
-                  animationComplete={animationComplete}
-                />
-              ))}
-            </>
-          )}
+          {marketingSteps.map((step, index) => (
+            <MarketingStepButton
+              key={step.number}
+              step={step}
+              index={index}
+              onClick={() => handleStepClick(step)}
+              isSelected={selectedStep === step}
+              isExpanded={isExpanded}
+            />
+          ))}
         </AnimatePresence>
       </div>
 
