@@ -6,11 +6,10 @@ const MarketingStepButton = ({ step, index, onClick, isSelected, isExpanded }) =
 
   return (
     <motion.div
-      initial={{ scale: 0, opacity: 0, rotate: -180 }}
+      initial={{ scale: 0, opacity: 0 }}
       animate={{ 
         scale: isExpanded ? 1 : 0, 
-        opacity: isExpanded ? 1 : 0,
-        rotate: isExpanded ? finalRotation : -180
+        opacity: isExpanded ? 1 : 0
       }}
       transition={{
         type: 'spring',
@@ -22,15 +21,15 @@ const MarketingStepButton = ({ step, index, onClick, isSelected, isExpanded }) =
         position: 'absolute', 
         top: '50%', 
         left: '50%', 
-        transform: `translate(-50%, -50%)`,
-        transformOrigin: 'center center'
+        transform: `translate(-50%, -50%) rotate(${finalRotation}deg) translateY(-75px)`,
+        transformOrigin: '50% calc(100% + 75px)'
       }}
     >
       <motion.div
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         onClick={onClick}
-        className={`w-32 h-32 relative cursor-pointer ${isSelected ? 'z-10' : 'z-0'}`}
+        className={`w-24 h-24 relative cursor-pointer ${isSelected ? 'z-10' : 'z-0'}`}
       >
         <PetalSVG color={step.color} />
         <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
